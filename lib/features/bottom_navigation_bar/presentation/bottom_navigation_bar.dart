@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:freud/features/home/presentation/home_screen.dart';
 import 'package:freud/features/chat/chat_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
