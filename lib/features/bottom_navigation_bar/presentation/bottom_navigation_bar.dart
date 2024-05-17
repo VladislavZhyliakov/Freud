@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:freud/features/home/presentation/home_screen.dart';
+import 'package:freud/features/chat/chat_main.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freud/features/authentication/services/auth_service.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   const MyBottomNavigationBar({super.key});
@@ -11,11 +15,32 @@ class MyBottomNavigationBar extends StatefulWidget {
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _page = 0;
-  static const List<Widget> _screenOptions = [HomeScreen(), Text('2'), Text('3'),Text('4'),Text('2'),];
+  static List<Widget> _screenOptions = [ HomeScreen(), Text('Журнал'), PsychologistChat(),Text('Вправи'),Text('Гарячі лінії'),];
+
+  final User? user = Auth().currentUser;
+
+  Future<void> signOut() async {
+    await Auth().signOut();
+  }
+
+  Widget _title(){
+    return const Text('Firebase Auth');
+  }
+
+  Widget _userUid(){
+    return Text(user?.email ?? 'User email');
+  }
+
+  Widget _signOutButton(){
+    return ElevatedButton(onPressed: signOut, child: const Text('Sign out'));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: _title(),
+      ),
       bottomNavigationBar: CurvedNavigationBar(    
         backgroundColor: Colors.transparent,
         buttonBackgroundColor: Colors.deepPurple,
@@ -35,6 +60,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
         },
       ),
       body: Center(child: _screenOptions.elementAt(_page)),//Center(child: Text(_page.toString()),),
+
+      
     );
   }
 }

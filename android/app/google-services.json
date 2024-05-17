@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "198912078708",
+    "project_id": "freud-dde5f",
+    "storage_bucket": "freud-dde5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198912078708:android:8ddad4e2fd7b1fe3e73221",
+        "android_client_info": {
+          "package_name": "com.example.freud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq8qWybOhiq3r4zWsngqq0mb_ypAgo_Ak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
