@@ -65,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Icon(
                   Icons.android,
@@ -78,9 +79,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  'Welcome to Freud, we are glad to see you',
-                  style: TextStyle(fontSize: 20),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  child: Text(
+                    'Welcome to Freud, we are glad to see you',
+                    style: TextStyle(fontSize: 24),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(height: 50),
                 Padding(
