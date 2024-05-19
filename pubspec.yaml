@@ -45,9 +45,15 @@ dependencies:
   firebase_auth: ^4.19.5
   cloud_firestore:
   google_nav_bar: ^5.0.6
+  flashy_tab_bar2: ^0.0.10
+  cuberto_bottom_bar: ^3.0.0
+  salomon_bottom_bar: ^3.3.2
+  
 
   dash_chat_2: ^0.0.18
-  chat_gpt_sdk: 
+  chat_gpt_sdk: ^3.0.4
+
+  url_launcher: 
   
 dev_dependencies:
   flutter_test:

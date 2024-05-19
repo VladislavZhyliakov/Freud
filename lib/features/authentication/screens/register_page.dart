@@ -78,11 +78,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   Icons.app_registration_rounded,
                   size: 100,
                 ),
-                const SizedBox(height: 75),
-                Text(
-                  'Let\'s get you on board!',
-                  style: GoogleFonts.bebasNeue(
-                    fontSize: 52,
+                const SizedBox(height: 40),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Text(
+                    'Let\'s get you on board!',
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 52,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(height: 10),
