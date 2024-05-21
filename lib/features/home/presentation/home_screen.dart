@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +12,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final user = FirebaseAuth.instance.currentUser!;
+  var userAuth = FirebaseAuth.instance.currentUser!;
+  final user = FirebaseFirestore.instance.collection('users');
+  String userName = '';
+
+ @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
+
+ Future<void> getUserInfo() async {
+    DocumentSnapshot userDoc = await user.doc(userAuth.uid).get();
+    setState(() {
+      userName = userDoc['firstName'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: mainBackgroundColor,
       appBar: AppBar(
         backgroundColor: mainBackgroundColor,
-        title: Text('Привіт ${user.email!}'),
-        actions: [IconButton(onPressed: () => FirebaseAuth.instance.signOut(), icon: Icon(Icons.exit_to_app))],
+        title: Text('Привіт, $userName!', style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 36),),
+        actions: [IconButton(onPressed: () => FirebaseAuth.instance.signOut(), icon: const Icon(Icons.exit_to_app, size: 36,))],
       ),
-      body: const Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body:  Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Welcome to Freud!'),
-          Text(
-              'Цитата дня:\nЖиття – це те, що відбувається з тобою, поки ти жваво будуєш інші плани.\nДжон Леннон'),
+          const Text('Ласково просимо до Freud!', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36), textAlign: TextAlign.center,),
+          const SizedBox(height: 20,),
+          Image.asset('assets/images/logo.png', width: 300, height: 300),
         ],
       ),
     );

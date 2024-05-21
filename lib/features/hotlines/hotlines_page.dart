@@ -55,7 +55,7 @@ class CrisisContactsPage extends StatelessWidget {
                               child: Text(
                                 'Лінія підтримки психічного здоров\'я та запобігання самогубствам. Працює 24/7. Без вихідних і свят.',
                                 style: TextStyle(),
-                                textAlign: TextAlign.justify,
+                                textAlign: TextAlign.center,
                               ),
                             ),
                             ElevatedButton(
@@ -105,7 +105,7 @@ class CrisisContactsPage extends StatelessWidget {
                               child: Text(
                                 'Гаряча лінія від Українського ветеранського фонду. Працюють досвідчені фахівці-психологи. Працює 24/7. Без вихідних і свят.',
                                 style: TextStyle(),
-                                textAlign: TextAlign.justify,
+                                textAlign: TextAlign.center,
                               ),
                             ),
                             ElevatedButton(
@@ -160,7 +160,7 @@ class CrisisContactsPage extends StatelessWidget {
                               child: Text(
                                 'Контактний номер швидкої медичної допомоги. Працює 24/7. Без вихідних і свят.',
                                 style: TextStyle(),
-                                textAlign: TextAlign.justify,
+                                textAlign: TextAlign.center,
                               ),
                             ),
                             ElevatedButton(

@@ -4,7 +4,6 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:freud/features/chat_psychologist/consts.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
-import 'package:freud/stylings/colors_preferences.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -26,15 +25,15 @@ class _ChatPageState extends State<ChatPage> {
     print(assistant.name);
   }
 
-  var thread;
+  // var thread;
 
-  void createThread() async{
-    thread = await _openAI.threads.createThread(request: ThreadRequest());
-  }
+  // void createThread() async{
+  //   thread = await _openAI.threads.createThread(request: ThreadRequest());
+  // }
 
-  void createMessage() async{
-    //final message = await _openAI.threads.messages.createMessage(threadId: thread.id, request: ThreadRequest( messages: [{"role":"user", "content": "Hi, who are you?"}]));
-  }
+  // void createMessage() async{
+  //   //final message = await _openAI.threads.messages.createMessage(threadId: thread.id, request: ThreadRequest( messages: [{"role":"user", "content": "Hi, who are you?"}]));
+  // }
 
   final ChatUser _user = ChatUser(
     id: '1',
@@ -59,15 +58,17 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainBackgroundColor,
+      backgroundColor: const Color.fromARGB(255, 243, 223, 191),
       resizeToAvoidBottomInset: true,
-
       appBar: AppBar(
-        backgroundColor: mainBackgroundColor,
-        title: const Text(
-          'Freud',
-          style: TextStyle(
-            color: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 243, 223, 191),
+        title: const Center(
+          child: Text(
+            'Freud',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold
+            ),
           ),
         ),
       ),
@@ -78,6 +79,7 @@ class _ChatPageState extends State<ChatPage> {
             currentUserContainerColor: Colors.black,
             containerColor: Color.fromARGB(255, 153, 153, 80),
             textColor: Colors.white,
+            
           ),
           onSend: (ChatMessage m) {
             getChatResponse(m);

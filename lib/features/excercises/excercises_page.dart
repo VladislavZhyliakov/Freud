@@ -71,7 +71,7 @@ class ExcercisesPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const BreathingSquare(),
+                      builder: (context) => const FiveFeelings(),
                     ),
                   );
                 },
