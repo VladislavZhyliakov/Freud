@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freud/features/chat_psychologist/pages/chat_page.dart';
 import 'package:freud/features/excercises/excercises_page.dart';
 import 'package:freud/features/home/presentation/home_screen.dart';
 import 'package:freud/features/hotlines/hotlines_page.dart';
 import 'package:freud/features/journal/widgets/states.dart';
+import 'package:freud/features/mood_tracker/views/mood_tracker_page.dart';
 import 'package:freud/stylings/colors_preferences.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -18,7 +20,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _page = 0;
   final List<Widget> _screenOptions = [
     const HomeScreen(),
-    const Expenses(),
+    States(),
     const ChatPage(),
     const ExcercisesPage(),
     const CrisisContactsPage(),

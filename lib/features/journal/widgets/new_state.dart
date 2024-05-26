@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:freud/features/journal/models/user_state.dart';
+import 'package:freud/features/journal/controllers/state_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
-class NewExpense extends StatefulWidget {
-  const NewExpense(this.onAddExpense, {super.key});
+class NewState extends StatefulWidget {
+  const NewState(this.onAddState, {super.key});
 
-  final void Function(UserState expense) onAddExpense;
+  final void Function(UserState state) onAddState;
 
   @override
-  State<NewExpense> createState() => _NewExpenseState();
+  State<NewState> createState() => _NewStateState();
 }
 
-class _NewExpenseState extends State<NewExpense> {
+class _NewStateState extends State<NewState> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
   Mood _selectedCategory = Mood.good;
+  StateController stateController = StateController();
+  var userAuth = FirebaseAuth.instance.currentUser!;
+  var stateId;
 
 
   void _presentDatePicker() async {
@@ -33,7 +38,7 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  void _submitExpenseData() {
+  void _submitStateData() {
     final enteredAmount =_amountController.text;
     final amountIsInvalid = enteredAmount == '';
 
@@ -58,8 +63,8 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
-
-    widget.onAddExpense(UserState(title: _titleController.text, description: enteredAmount, date: _selectedDate!, mood: _selectedCategory));
+    stateId = stateController.addNewState(UserState(title: _titleController.text, description: enteredAmount, date: _selectedDate!, mood: _selectedCategory));
+    widget.onAddState(UserState(title: _titleController.text, description: enteredAmount, date: _selectedDate!, mood: _selectedCategory));
     Navigator.pop(context);
   }
 
@@ -146,7 +151,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Відмінити'),
               ),
               ElevatedButton(
-                onPressed: _submitExpenseData,
+                onPressed: _submitStateData,
                 child: const Text('Зберегти стан'),
               ),
             ],
