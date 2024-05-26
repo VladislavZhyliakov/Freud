@@ -32,4 +32,15 @@ class StateController {
               );
             }).toList());
   }
+
+  
+  Future deleteState(DateTime date) async {
+    QuerySnapshot snapshot = await _userStatesCollection.
+    where('userId', isEqualTo: userId)
+    .where('date', isEqualTo: Timestamp.fromDate(date))
+        .get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
 }

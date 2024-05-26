@@ -22,7 +22,6 @@
 //         title: '1', description: 'const', date: DateTime.now(), mood: Mood.good)
 //   ];
 
-
 //   void _openAddStateOverlay() {
 //     showModalBottomSheet(
 //       isScrollControlled: true,
@@ -96,7 +95,6 @@
 //   }
 // }
 
-
 import 'package:freud/features/journal/widgets/states_list/states_list.dart';
 import 'package:freud/features/journal/models/user_state.dart';
 import 'package:freud/features/journal/widgets/new_state.dart';
@@ -117,6 +115,8 @@ class _StatesState extends State<States> {
   StateController stateController = StateController();
 
   List<UserState> _registeredStates = [];
+
+  bool undoDeleteCheck = false;
 
   @override
   void initState() {
@@ -150,6 +150,7 @@ class _StatesState extends State<States> {
     final stateIndex = _registeredStates.indexOf(state);
     setState(() {
       _registeredStates.remove(state);
+      stateController.deleteState(state.date);
     });
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -160,12 +161,20 @@ class _StatesState extends State<States> {
           label: 'Undo',
           onPressed: () {
             setState(() {
+              //undoDeleteCheck = true;
               _registeredStates.insert(stateIndex, state);
+              stateController.addNewState(state);
             });
           },
         ),
       ),
     );
+    // if (undoDeleteCheck == false) {
+    //   setState(() {
+    //     stateController.deleteState(state.date);
+    //   });
+    // }
+    // undoDeleteCheck = false;
   }
 
   @override
@@ -202,7 +211,8 @@ class _StatesState extends State<States> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No states found. Start adding some!'));
+            return const Center(
+                child: Text('No states found. Start adding some!'));
           } else {
             _registeredStates = snapshot.data!;
             return StateList(
