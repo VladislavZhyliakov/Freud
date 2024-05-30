@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
         _lastNameController == '' ||
         _ageController == '') {
       setState(() {
-        errorMessage = 'Not all fields are completed';
+        errorMessage = 'Не всі поля заповнено';
       });
     } else if (password == confirmPassword) {
       try {
@@ -80,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
       }
     } else {
       setState(() {
-        errorMessage = 'The password does not match';
+        errorMessage = 'Паролі не співпадають';
       });
     }
     Navigator.of(context).pop();
@@ -107,19 +107,20 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
+                const Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Text(
-                    'Let\'s get you on board!',
-                    style: GoogleFonts.bebasNeue(
-                      fontSize: 52,
+                    'Давайте зареєструємось!',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Register below with your details',
+                  'Нижче введіть ваші дані для реєстрації',
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(height: 50),
@@ -137,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         controller: _firstNameController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'First name',
+                          hintText: 'Ім\'я',
                         ),
                       ),
                     ),
@@ -158,7 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         controller: _lastNameController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Last name',
+                          hintText: 'Прізвище',
                         ),
                       ),
                     ),
@@ -179,7 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         controller: _ageController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Age',
+                          hintText: 'Вік',
                         ),
                       ),
                     ),
@@ -200,7 +201,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         controller: _emailController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Email',
+                          hintText: 'Електронна пошта',
                         ),
                       ),
                     ),
@@ -222,7 +223,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         obscureText: true,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Password',
+                          hintText: 'Пароль',
                         ),
                       ),
                     ),
@@ -244,7 +245,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         obscureText: true,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Confirm Password',
+                          hintText: 'Підтвердіть пароль',
                         ),
                       ),
                     ),
@@ -254,7 +255,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Text(
                   errorMessage == ''
                       ? ''
-                      : 'There is a problem:\n$errorMessage',
+                      : 'Виникла проблема:\n$errorMessage',
                   style: const TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.w700,
@@ -274,7 +275,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: TextButton(
                       onPressed: signUp,
                       child: const Text(
-                        'Sign Up',
+                        'Зареєструватись',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -289,13 +290,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Already a member?',
+                      'Вже маєте обліковий запис?',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     GestureDetector(
                       onTap: widget.showLoginPage,
                       child: const Text(
-                        ' Login Now',
+                        ' Увійти',
                         style: TextStyle(
                             color: Colors.blue, fontWeight: FontWeight.bold),
                       ),

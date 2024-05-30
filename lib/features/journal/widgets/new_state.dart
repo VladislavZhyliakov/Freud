@@ -48,15 +48,15 @@ class _NewStateState extends State<NewState> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Invalid input'),
+          title: const Text('Введені неправильні дані'),
           content: const Text(
-              'Please make sure a valid title, amount, date and category were entered.'),
+              'Будь ласка чи ви заповнили усі поля правильно'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(ctx);
               },
-              child: const Text('Okay'),
+              child: const Text('Гаразд'),
             ),
           ],
         ),
@@ -109,7 +109,7 @@ class _NewStateState extends State<NewState> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(_selectedDate == null
-                        ? 'No date selected'
+                        ? 'Дату не обрано'
                         : formatter.format(_selectedDate!)),
                     IconButton(
                       onPressed: _presentDatePicker,

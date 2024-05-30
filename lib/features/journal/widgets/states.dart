@@ -156,9 +156,9 @@ class _StatesState extends State<States> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 3),
-        content: const Text('State deleted.'),
+        content: const Text('Запис видалено'),
         action: SnackBarAction(
-          label: 'Undo',
+          label: 'Відмінити видалення',
           onPressed: () {
             setState(() {
               //undoDeleteCheck = true;
@@ -180,7 +180,13 @@ class _StatesState extends State<States> {
   @override
   Widget build(BuildContext context) {
     Widget mainContent = const Center(
-      child: Text('No states found. Start adding some!'),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Ваших записів не знайдено'),
+          Text('Спробуйте створити нові'),
+        ],
+      ),
     );
 
     if (_registeredStates.isNotEmpty) {
@@ -211,8 +217,7 @@ class _StatesState extends State<States> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(
-                child: Text('No states found. Start adding some!'));
+            return mainContent;
           } else {
             _registeredStates = snapshot.data!;
             return StateList(
