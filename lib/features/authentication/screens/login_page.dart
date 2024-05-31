@@ -81,23 +81,22 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 224, 251, 226),
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
+      backgroundColor: Color.fromARGB(255, 15, 21, 77),
+      body: Stack(
+        children: [
+          Lottie.asset('assets/animations/welcome_page_animation.json'),
+          SafeArea(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              //mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  child: Center(child: Lottie.asset('assets/animations/welcome_page_animation.json'),),
-                ),
                 //Image.asset('assets/images/mental-health.png', width: 250, height: 180,),
-                const SizedBox(height: 10),
-                 Text(
+                const SizedBox(height: 165),
+                Text(
                   'Ласкаво просимо',
                   style: GoogleFonts.unbounded(
                     fontSize: 36,
+                    color: Color.fromARGB(255, 232, 234, 246),
                   ),
                   textAlign: TextAlign.center,
                   // style: TextStyle(
@@ -105,13 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                   //     fontWeight: FontWeight.bold,
                   //     color: Color.fromARGB(255, 42, 101, 45)),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50),
                   child: Text(
                     'Знайдіть свій внутрішній спокій разом з Freud',
                     style: GoogleFonts.unbounded(
-                    fontSize: 18,
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 232, 234, 246),
                     ),
                     textAlign: TextAlign.center,
                     // style: TextStyle(
@@ -119,15 +119,15 @@ class _LoginPageState extends State<LoginPage> {
                     // textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 165),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 191, 246, 195),
+                      color: const Color.fromARGB(255, 82, 103, 220),
                       border: Border.all(
-                        color: const Color.fromARGB(255, 191, 246, 195),
-                      ),
+                          color: const Color.fromARGB(255, 232, 234, 246),
+                          width: 2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -136,12 +136,15 @@ class _LoginPageState extends State<LoginPage> {
                         controller: _emailController,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: const Color.fromARGB(255, 191, 246, 195),
+                          fillColor: const Color.fromARGB(255, 82, 103, 220),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(24),
                           ),
                           hintText: 'Електронна пошта',
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -152,10 +155,10 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 191, 246, 195),
+                      color: const Color.fromARGB(255, 82, 103, 220),
                       border: Border.all(
-                        color: const Color.fromARGB(255, 191, 246, 195),
-                      ),
+                          color: const Color.fromARGB(255, 232, 234, 246),
+                          width: 2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -165,12 +168,15 @@ class _LoginPageState extends State<LoginPage> {
                         obscureText: true,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: const Color.fromARGB(255, 191, 246, 195),
+                          fillColor: const Color.fromARGB(255, 82, 103, 220),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(24),
                           ),
                           hintText: 'Пароль',
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -193,9 +199,9 @@ class _LoginPageState extends State<LoginPage> {
                     height: 65,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: const Color.fromARGB(255, 42, 116, 47),
+                        color: const Color.fromARGB(255, 232, 234, 246),
                       ),
-                      color: Color.fromARGB(255, 176, 235, 180),
+                      color: const Color.fromARGB(255, 232, 234, 246),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
@@ -203,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         'Увійти',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 42, 116, 47),
+                          color: Color.fromARGB(255, 15, 21, 77),
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
@@ -219,9 +225,9 @@ class _LoginPageState extends State<LoginPage> {
                     height: 65,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: const Color.fromARGB(255, 42, 116, 47),
+                        color: const Color.fromARGB(255, 232, 234, 246),
                       ),
-                      color: Color.fromARGB(255, 176, 235, 180),
+                      color: const Color.fromARGB(255, 232, 234, 246),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
@@ -229,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         'Увійти з Google',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 42, 116, 47),
+                          color: Color.fromARGB(255, 15, 21, 77),
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
@@ -245,7 +251,8 @@ class _LoginPageState extends State<LoginPage> {
                       'Не маєте облікового запису?',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 42, 116, 47),
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 232, 234, 246),
                       ),
                     ),
                     GestureDetector(
@@ -253,6 +260,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         ' Зареєструватись',
                         style: TextStyle(
+                          fontSize: 16,
                             color: Colors.blue, fontWeight: FontWeight.bold),
                       ),
                     )
@@ -261,7 +269,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }
