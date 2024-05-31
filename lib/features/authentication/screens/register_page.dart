@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key, required this.showLoginPage});
@@ -99,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: const Color.fromARGB(255, 15, 21, 77),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -107,29 +108,38 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Text(
-                    'Давайте зареєструємось!',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+                    'Давайте зареєструємось',
+                    style: GoogleFonts.unbounded(
+                      fontSize: 32,
+                      color: const Color.fromARGB(255, 232, 234, 246),
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  'Нижче введіть ваші дані для реєстрації',
-                  style: TextStyle(fontSize: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Text(
+                    'Введіть ваші дані для реєстрації у полях нижче',
+                    style: GoogleFonts.unbounded(
+                      fontSize: 18,
+                      color: const Color.fromARGB(255, 232, 234, 246),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
+                      color: const Color.fromARGB(255, 232, 234, 246),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -139,6 +149,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Ім\'я',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -149,8 +162,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
+                      color: const Color.fromARGB(255, 232, 234, 246),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -160,6 +175,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Прізвище',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -170,8 +188,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
+                      color: const Color.fromARGB(255, 232, 234, 246),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -181,6 +201,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Вік',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -191,8 +214,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
+                      color: const Color.fromARGB(255, 232, 234, 246),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -202,6 +227,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Електронна пошта',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -212,8 +240,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
+                      color: const Color.fromARGB(255, 232, 234, 246),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -224,6 +254,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Пароль',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -234,8 +267,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
+                      color: const Color.fromARGB(255, 232, 234, 246),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -246,6 +281,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Підтвердіть пароль',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 15, 21, 77),
+                          ),
                         ),
                       ),
                     ),
@@ -253,9 +291,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  errorMessage == ''
-                      ? ''
-                      : 'Виникла проблема:\n$errorMessage',
+                  errorMessage == '' ? '' : 'Виникла проблема:\n$errorMessage',
                   style: const TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.w700,
@@ -269,7 +305,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: double.infinity,
                     height: 65,
                     decoration: BoxDecoration(
-                      color: Colors.deepPurple,
+                      color: const Color.fromARGB(255, 82, 103, 220),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
@@ -277,7 +313,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: const Text(
                         'Зареєструватись',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 232, 234, 246),
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
@@ -291,14 +327,21 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     const Text(
                       'Вже маєте обліковий запис?',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 232, 234, 246),
+                        fontSize: 16,
+                      ),
                     ),
                     GestureDetector(
                       onTap: widget.showLoginPage,
                       child: const Text(
                         ' Увійти',
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold),
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     )
                   ],

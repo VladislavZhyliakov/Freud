@@ -25,7 +25,9 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return const Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 232, 234, 246),
+          ),
         );
       },
     );
@@ -62,8 +64,21 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void googleAuth() {
-    final gUser = AuthService().signInWithGoogle();
+  void googleAuth() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 232, 234, 246),
+          ),
+        );
+      },
+    );
+
+    final gUser = await AuthService().signInWithGoogle();
+
+    Navigator.of(context).pop();
 
     var userAuth = FirebaseAuth.instance.currentUser!;
 
@@ -81,192 +96,202 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 15, 21, 77),
+      backgroundColor: const Color.fromARGB(255, 15, 21, 77),
       body: Stack(
         children: [
           Lottie.asset('assets/animations/welcome_page_animation.json'),
           SafeArea(
-            child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                //Image.asset('assets/images/mental-health.png', width: 250, height: 180,),
-                const SizedBox(height: 165),
-                Text(
-                  'Ласкаво просимо',
-                  style: GoogleFonts.unbounded(
-                    fontSize: 36,
-                    color: Color.fromARGB(255, 232, 234, 246),
+            child: SingleChildScrollView(
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //Image.asset('assets/images/mental-health.png', width: 250, height: 180,),
+                  const SizedBox(height: 165),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Text(
+                      'Ласкаво просимо',
+                      style: GoogleFonts.unbounded(
+                        fontSize: 32,
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
+                      textAlign: TextAlign.center,
+                      // style: TextStyle(
+                      //     fontSize: 52,
+                      //     fontWeight: FontWeight.bold,
+                      //     color: Color.fromARGB(255, 42, 101, 45)),
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                  // style: TextStyle(
-                  //     fontSize: 52,
-                  //     fontWeight: FontWeight.bold,
-                  //     color: Color.fromARGB(255, 42, 101, 45)),
-                ),
-                const SizedBox(height: 15),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
-                  child: Text(
-                    'Знайдіть свій внутрішній спокій разом з Freud',
-                    style: GoogleFonts.unbounded(
-                      fontSize: 18,
-                      color: Color.fromARGB(255, 232, 234, 246),
+                  const SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: Text(
+                      'Знайдіть свій внутрішній спокій разом з Freud',
+                      style: GoogleFonts.unbounded(
+                        fontSize: 18,
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                      ),
+                      textAlign: TextAlign.center,
+                      // style: TextStyle(
+                      //     fontSize: 24, color: Color.fromARGB(255, 42, 101, 45)),
+                      // textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 165),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 82, 103, 220),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 232, 234, 246),
+                            width: 2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 0.0),
+                        child: TextField(
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color.fromARGB(255, 82, 103, 220),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            hintText: 'Електронна пошта',
+                            hintStyle: const TextStyle(
+                              color: Color.fromARGB(255, 15, 21, 77),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 82, 103, 220),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 232, 234, 246),
+                            width: 2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 0.0),
+                        child: TextField(
+                          controller: _passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color.fromARGB(255, 82, 103, 220),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            hintText: 'Пароль',
+                            hintStyle: const TextStyle(
+                              color: Color.fromARGB(255, 15, 21, 77),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    errorMessage == ''
+                        ? ''
+                        : 'Виникла проблема:\n$errorMessage',
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.center,
-                    // style: TextStyle(
-                    //     fontSize: 24, color: Color.fromARGB(255, 42, 101, 45)),
-                    // textAlign: TextAlign.center,
                   ),
-                ),
-                const SizedBox(height: 165),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 82, 103, 220),
-                      border: Border.all(
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        border: Border.all(
                           color: const Color.fromARGB(255, 232, 234, 246),
-                          width: 2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 0.0),
-                      child: TextField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 82, 103, 220),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                          hintText: 'Електронна пошта',
-                          hintStyle: const TextStyle(
+                        ),
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: TextButton(
+                        onPressed: signIn,
+                        child: const Text(
+                          'Увійти',
+                          style: TextStyle(
                             color: Color.fromARGB(255, 15, 21, 77),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 82, 103, 220),
-                      border: Border.all(
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        border: Border.all(
                           color: const Color.fromARGB(255, 232, 234, 246),
-                          width: 2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 0.0),
-                      child: TextField(
-                        controller: _passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 82, 103, 220),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                          hintText: 'Пароль',
-                          hintStyle: const TextStyle(
+                        ),
+                        color: const Color.fromARGB(255, 232, 234, 246),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: TextButton.icon(
+                        onPressed: googleAuth,
+                        label: const Text(
+                          'Увійти з Google',
+                          style: TextStyle(
                             color: Color.fromARGB(255, 15, 21, 77),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
                         ),
+                        icon: Image.asset('assets/images/google_logo.png'),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  errorMessage == '' ? '' : 'Виникла проблема:\n$errorMessage',
-                  style: const TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w700,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 65,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 232, 234, 246),
-                      ),
-                      color: const Color.fromARGB(255, 232, 234, 246),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: signIn,
-                      child: const Text(
-                        'Увійти',
+                  //TextButton.icon(onPressed: onPressed, icon: icon, label: label),
+                  const SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Не маєте облікового запису?',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 15, 21, 77),
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 65,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 232, 234, 246),
-                      ),
-                      color: const Color.fromARGB(255, 232, 234, 246),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: googleAuth,
-                      child: const Text(
-                        'Увійти з Google',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 15, 21, 77),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Не маєте облікового запису?',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 232, 234, 246),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: widget.showRegisterPage,
-                      child: const Text(
-                        ' Зареєструватись',
-                        style: TextStyle(
                           fontSize: 16,
-                            color: Colors.blue, fontWeight: FontWeight.bold),
+                          color: Color.fromARGB(255, 232, 234, 246),
+                        ),
                       ),
-                    )
-                  ],
-                )
-              ],
+                      GestureDetector(
+                        onTap: widget.showRegisterPage,
+                        child: const Text(
+                          ' Зареєструватись',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ],
