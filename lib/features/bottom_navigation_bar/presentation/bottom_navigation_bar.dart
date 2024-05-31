@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:freud/features/chat_psychologist/pages/chat_page.dart';
+import 'package:freud/features/excercises/excercises_page.dart';
 import 'package:freud/features/home/presentation/home_screen.dart';
-import 'package:freud/features/chat/chat_main.dart';
+import 'package:freud/features/hotlines/hotlines_page.dart';
+import 'package:freud/features/journal/widgets/states.dart';
+import 'package:freud/stylings/colors_preferences.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
@@ -14,16 +19,22 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _page = 0;
   final List<Widget> _screenOptions = [
     const HomeScreen(),
-    const Center(child: Text('Журнал')),
-    const PsychologistChat(),
-    const Center(child: Text('Вправи')),
-    const Center(child: Text('Гарячі лінії')),
+    States(),
+    const ChatPage(),
+    const ExcercisesPage(),
+    const CrisisContactsPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: Container(
+      backgroundColor: mainBackgroundColor,
+      body: IndexedStack(
+        index: _page,
+        children: _screenOptions,
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Container(
           color: Colors.black,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
@@ -31,7 +42,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
               backgroundColor: Colors.black,
               color: Colors.white,
               activeColor: Colors.white,
-              rippleColor: Colors.blue,
+              rippleColor: Colors.grey,
               tabBackgroundColor: Colors.grey.shade800,
               gap: 8,
               padding: const EdgeInsets.all(16),
@@ -39,28 +50,23 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                 GButton(
                   icon: Icons.home,
                   text: 'Головна',
-                  rippleColor: Colors.grey,
                 ),
                 GButton(
                   icon: Icons.note,
                   text: 'Журнал',
-                  rippleColor: Colors.deepPurpleAccent,
                 ),
                 GButton(
-                  icon: Icons.chat,
+                  icon: Icons.chat_bubble,
                   text: 'Чат',
-                  rippleColor: Colors.green,
                 ),
                 GButton(
                   icon: Icons.star,
                   text: 'Вправи',
-                  rippleColor: Colors.indigoAccent,
                 ),
                 GButton(
                   icon: Icons.call,
-                  text: 'Гарячі Контакти',
+                  text: 'Гарячі Лінії',
                   rippleColor: Colors.red,
-                  
                 ),
               ],
               onTabChange: (index) {
@@ -71,34 +77,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             ),
           ),
         ),
-        body: IndexedStack(
-          index: _page,
-          children: _screenOptions,
-        )
-
-        // appBar: AppBar(),
-        // bottomNavigationBar: CurvedNavigationBar(
-        //   backgroundColor: Colors.transparent,
-        //   buttonBackgroundColor: Colors.deepPurple,
-        //   color: Colors.deepPurple,
-        //   animationDuration: const Duration(milliseconds: 300),
-        //   items: const [
-        //     Icon(Icons.home, size: 26, color: Colors.white),
-        //     Icon(Icons.note_add, size: 26, color: Colors.white),
-        //     Icon(Icons.chat, size: 26, color: Colors.white),
-        //     Icon(Icons.emoji_objects_rounded, size: 26, color: Colors.white),
-        //     Icon(Icons.call, size: 26, color: Colors.white),
-        //   ],
-        //   onTap: (index) {
-        //     setState(() {
-        //       _page = index;
-        //     });
-        //   },
-        // ),
-        //  body: IndexedStack(index: _page, children: _screenOptions,)
-        //Center(
-        //     child: _screenOptions
-        //         .elementAt(_page)), //Center(child: Text(_page.toString()),),
-        );
+      ),
+    );
   }
 }
