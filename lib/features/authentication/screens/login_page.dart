@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:freud/features/authentication/auth/auth_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.showRegisterPage});
@@ -88,23 +89,34 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/mental-health.png', width: 250, height: 180,),
-                const SizedBox(height: 10),
-                const Text(
-                  'Вітаємо',
-                  style: TextStyle(
-                      fontSize: 52,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 42, 101, 45)),
+                Container(
+                  child: Center(child: Lottie.asset('assets/animations/welcome_page_animation.json'),),
                 ),
+                //Image.asset('assets/images/mental-health.png', width: 250, height: 180,),
                 const SizedBox(height: 10),
-                const Padding(
+                 Text(
+                  'Ласкаво просимо',
+                  style: GoogleFonts.unbounded(
+                    fontSize: 36,
+                  ),
+                  textAlign: TextAlign.center,
+                  // style: TextStyle(
+                  //     fontSize: 52,
+                  //     fontWeight: FontWeight.bold,
+                  //     color: Color.fromARGB(255, 42, 101, 45)),
+                ),
+                const SizedBox(height: 20),
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50),
                   child: Text(
-                    'Ласкаво просимо до Freud',
-                    style: TextStyle(
-                        fontSize: 24, color: Color.fromARGB(255, 42, 101, 45)),
+                    'Знайдіть свій внутрішній спокій разом з Freud',
+                    style: GoogleFonts.unbounded(
+                    fontSize: 18,
+                    ),
                     textAlign: TextAlign.center,
+                    // style: TextStyle(
+                    //     fontSize: 24, color: Color.fromARGB(255, 42, 101, 45)),
+                    // textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(height: 50),
