@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:freud/features/excercises/psychological_excercises/square_breathing.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freud/stylings/colors_preferences.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,15 +35,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainBackgroundColor,
+      backgroundColor: const Color.fromARGB(255, 82, 103, 220),
       appBar: AppBar(
-        backgroundColor: mainBackgroundColor,
+        backgroundColor: const Color.fromARGB(255, 82, 103, 220),
+        centerTitle: false,
         title: Text(
           'Привіт,  $userName!',
           style: GoogleFonts.unbounded(
-            fontSize: 18,
-            color: Colors.black,
+            fontSize: 22,
+            color: Colors.white,
+            //fontWeight: FontWeight.w500,
           ),
+          textAlign: TextAlign.start,
         ),
         actions: [
           IconButton(
@@ -51,32 +56,142 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               icon: const Icon(
                 Icons.exit_to_app,
-                size: 36,
+                color: Colors.white,
+                size: 28,
               ))
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text('Який у вас настрій? Не забудьте зробити запис в журналі'),
-          OutlinedButton(onPressed: () {}, child: Text('Журнал станів')),
-          Text('Хочете поспілкуватись? Напишіть Фройду'),
-          OutlinedButton(onPressed: () {}, child: Text('Чат з Фройдом')),
-          Text('Відчуваєте неспокій? Виконайте вправу на вибів'),
-          OutlinedButton(onPressed: () {}, child: Text('Вправи')),
-          Text('Терміново потрібна допомога? Подзвоніть по гарячій лінії'),
-          OutlinedButton(onPressed: () {}, child: Text('Гарячі лінії')),
-          // const Text(
-          //   'Ласкаво просимо до Freud!',
-          //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
-          //   textAlign: TextAlign.center,
-          // ),
-          // const SizedBox(
-          //   height: 20,
-          // ),
-          // Image.asset('assets/images/logo.png', width: 300, height: 300),
-        ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+
+            //App functions
+
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  Text(
+                    'Як ви себе почуваєте?',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Не забудьте зробити запис у журналі  ',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Icon(Icons.note),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Хочете поспілкуватись?',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Напишіть Фройду  ',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Icon(Icons.chat_bubble),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Відчуваєте неспокій?',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Виконайте корисну вправу  ',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Icon(Icons.star),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Терміново потрібна допомога?',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Подзвоніть по гарячій лінії  ',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Icon(Icons.call),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+
+            //),
+            Lottie.asset(
+              'assets/animations/home_page_animation.json',
+              height: 250,
+            ),
+            const SizedBox(
+              height: 0,
+            ),
+          ],
+        ),
       ),
     );
   }

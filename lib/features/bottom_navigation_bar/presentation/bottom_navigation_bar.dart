@@ -15,10 +15,8 @@ class MyBottomNavigationBar extends StatefulWidget {
   State<MyBottomNavigationBar> createState() => _MyBottomNavigationBarState();
 }
 
-int page = 0;
-
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  //int _page = 0;
+  int _page = 0;
   final List<Widget> _screenOptions = [
     const HomeScreen(),
     const States(),
@@ -32,7 +30,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     return Scaffold(
       backgroundColor: mainBackgroundColor,
       body: IndexedStack(
-        index: page,
+        index: _page,
         children: _screenOptions,
       ),
       bottomNavigationBar: SafeArea(
@@ -73,7 +71,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
               ],
               onTabChange: (index) {
                 setState(() {
-                  page = index;
+                  _page = index;
                 });
               },
             ),
