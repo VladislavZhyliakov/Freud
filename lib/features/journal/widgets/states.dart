@@ -98,9 +98,10 @@
 import 'package:freud/features/journal/widgets/states_list/states_list.dart';
 import 'package:freud/features/journal/models/user_state.dart';
 import 'package:freud/features/journal/widgets/new_state.dart';
-import 'package:freud/stylings/colors_preferences.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:freud/features/journal/controllers/state_controller.dart';
+import 'package:lottie/lottie.dart';
 
 class States extends StatefulWidget {
   const States({super.key});
@@ -152,23 +153,23 @@ class _StatesState extends State<States> {
       _registeredStates.remove(state);
       stateController.deleteState(state.date);
     });
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 3),
-        content: const Text('Запис видалено'),
-        action: SnackBarAction(
-          label: 'Відмінити видалення',
-          onPressed: () {
-            setState(() {
-              //undoDeleteCheck = true;
-              _registeredStates.insert(stateIndex, state);
-              stateController.addNewState(state);
-            });
-          },
-        ),
-      ),
-    );
+    // ScaffoldMessenger.of(context).clearSnackBars();
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   SnackBar(
+    //     duration: const Duration(seconds: 3),
+    //     content: const Text('Запис видалено'),
+    //     action: SnackBarAction(
+    //       label: 'Відмінити видалення',
+    //       onPressed: () {
+    //         setState(() {
+    //           //undoDeleteCheck = true;
+    //           _registeredStates.insert(stateIndex, state);
+    //           stateController.addNewState(state);
+    //         });
+    //       },
+    //     ),
+    //   ),
+    // );
     // if (undoDeleteCheck == false) {
     //   setState(() {
     //     stateController.deleteState(state.date);
@@ -179,12 +180,27 @@ class _StatesState extends State<States> {
 
   @override
   Widget build(BuildContext context) {
-    Widget mainContent = const Center(
+    Widget mainContent = Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Ваших записів не знайдено'),
-          Text('Спробуйте створити нові'),
+          const Text(
+            'Ваших записів не знайдено',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+              color: Color.fromARGB(255, 15, 21, 77),
+            ),
+          ),
+          const Text(
+            'Спробуйте створити нові',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+              color: Color.fromARGB(255, 15, 21, 77),
+            ),
+          ),
+          Lottie.asset('assets/animations/notes.json'),
         ],
       ),
     );
@@ -197,16 +213,27 @@ class _StatesState extends State<States> {
     }
 
     return Scaffold(
-      backgroundColor: mainBackgroundColor,
+      backgroundColor: const Color.fromARGB(255, 204, 241, 255),
       appBar: AppBar(
-        backgroundColor: mainBackgroundColor,
-        title: const Text(
+        backgroundColor: const Color.fromARGB(255, 204, 241, 255),
+        centerTitle: true,
+        title: Text(
           'Журнал станів',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: GoogleFonts.unbounded(
+            fontSize: 28,
+            color: const Color.fromARGB(255, 15, 21, 77),
+            //fontWeight: FontWeight.w500,
+          ),
         ),
         actions: [
           IconButton(
-              onPressed: _openAddStateOverlay, icon: const Icon(Icons.add))
+            onPressed: _openAddStateOverlay,
+            icon: const Icon(
+              Icons.add,
+              color: Color.fromARGB(255, 15, 21, 77),
+              size: 28,
+            ),
+          )
         ],
       ),
       body: StreamBuilder<List<UserState>>(

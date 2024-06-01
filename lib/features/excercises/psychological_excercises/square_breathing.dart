@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BreathingSquare extends StatefulWidget {
   const BreathingSquare({super.key});
@@ -67,13 +68,18 @@ class _BreathingSquareState extends State<BreathingSquare>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Дихання по квадрату',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: const Color(0xFFF9F2E7),
+        centerTitle: true,
+        title: Text(
+            'Дихання по квадрату',
+            style: GoogleFonts.unbounded(
+              fontSize: 24,
+              color: const Color.fromARGB(255, 15, 21, 77),
+            ),
+            textAlign: TextAlign.center,
+          ),
+        backgroundColor: const Color.fromARGB(255, 204, 241, 255),
       ),
-      backgroundColor: const Color(0xFFF9F2E7),
+      backgroundColor: const Color.fromARGB(255, 204, 241, 255),
       body: Column(
         children: [
           const Padding(
@@ -81,12 +87,12 @@ class _BreathingSquareState extends State<BreathingSquare>
             child: Column(
               children: [
                 Text(
-                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: Color.fromARGB(255, 15, 21, 77),),
                     'Стрес часто примушує нас дихати швидко і поверхнево, тому мозок перенасичується киснем. Вправи на дихання знижують рівень кисню та подають сигнал заспокоєння для мозку.'),
                 SizedBox(height: 30),
                 Text(
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-                    'Дихай так: вдих пауза видих пауза. Всі чотири етапи мають однакову довжину приблизно по 4 секунди. Щоб тобі було легше це робити, стеж за рухом по цьому квадрату.'),
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color:  Color.fromARGB(255, 15, 21, 77),),
+                    'Дихайте так: вдих пауза видих пауза. Всі чотири етапи мають однакову довжину приблизно по 4 секунди. Щоб вам було легше це робити, стежте за рухом по цьому квадрату.'),
               ],
             ),
           ),

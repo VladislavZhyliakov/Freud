@@ -4,6 +4,7 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:freud/features/chat_psychologist/consts.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -48,24 +49,32 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 243, 223, 191),
+      backgroundColor: const Color.fromARGB(255, 204, 241, 255),
+
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 243, 223, 191),
-        title: const Center(
+      backgroundColor: const Color.fromARGB(255, 204, 241, 255),
+
+        title: Center(
           child: Text(
             'Фройд',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: GoogleFonts.unbounded(
+              fontSize: 28,
+              color: const Color.fromARGB(255, 15, 21, 77),
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
       ),
       body: SafeArea(
         child: DashChat(
+          
           currentUser: _user,
           messageOptions: const MessageOptions(
-            currentUserContainerColor: Colors.black,
-            containerColor: Color.fromARGB(255, 153, 153, 80),
-            textColor: Colors.white,
+            
+            currentUserContainerColor: Color.fromARGB(255, 15, 21, 77),
+            containerColor: Color.fromARGB(255, 74, 179, 217),
+            textColor: Color.fromARGB(255, 15, 21, 77),
           ),
           onSend: (ChatMessage m) {
             getChatResponse(m);
@@ -77,8 +86,9 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  String assistantInstructions = 'REMEMBER FOLLOWING: You are psychologist who uses CBT to help his clients. Your name is Freud. You speak only English and Ukrainian languages. If client asks you a question about fields not connected with psychology and helping people you do not answer him, you say he should find an expert in that field. You have provide your clients with nearly proffessional psychological support, like a real doctor. You are integrated into psychological support app which has states journal page (mood tracker page) and hotines page (hotlines include embulance and antisuicide hotline). If you see that client needs real help address him to that page. If you suggest the user to take a note about his feelings or symptoms address him to states journal page where he can write it down.\n';
-  
+  String assistantInstructions =
+      'REMEMBER FOLLOWING: You are psychologist who uses CBT to help his clients. Your name is Freud. You speak only English and Ukrainian languages. If client asks you a question about fields not connected with psychology and helping people you do not answer him, you say he should find an expert in that field. You have provide your clients with nearly proffessional psychological support, like a real doctor. You are integrated into psychological support app which has states journal page (mood tracker page) and hotines page (hotlines include embulance and antisuicide hotline). If you see that client needs real help address him to that page. If you suggest the user to take a note about his feelings or symptoms address him to states journal page where he can write it down.\n';
+
   Future<void> getChatResponse(ChatMessage m) async {
     setState(() {
       _messages.insert(0, m);
@@ -87,7 +97,9 @@ class _ChatPageState extends State<ChatPage> {
     List<Map<String, dynamic>> messagesHistory =
         _messages.reversed.toList().map((m) {
       if (m.user == _user) {
-        return Messages(role: Role.user, content: assistantInstructions +  m.text).toJson();
+        return Messages(
+                role: Role.user, content: assistantInstructions + m.text)
+            .toJson();
       } else {
         return Messages(role: Role.assistant, content: m.text).toJson();
       }

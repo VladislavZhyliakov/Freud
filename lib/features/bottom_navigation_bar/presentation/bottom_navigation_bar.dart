@@ -35,15 +35,15 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
-          color: Colors.black,
+          color: const Color.fromARGB(255, 15, 21, 77),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
             child: GNav(
-              backgroundColor: Colors.black,
+              backgroundColor: const Color.fromARGB(255, 15, 21, 77),
               color: Colors.white,
-              activeColor: Colors.white,
-              rippleColor: Colors.grey,
-              tabBackgroundColor: Colors.grey.shade800,
+              activeColor: const Color.fromARGB(255, 15, 21, 77),
+              rippleColor: const Color.fromARGB(255, 232, 244, 246),
+              tabBackgroundColor: const Color.fromARGB(255, 232, 234, 246),
               gap: 8,
               padding: const EdgeInsets.all(16),
               tabs: const [
