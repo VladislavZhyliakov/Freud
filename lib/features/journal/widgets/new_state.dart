@@ -48,7 +48,7 @@ class _NewStateState extends State<NewState> {
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Введені неправильні дані'),
-          content: const Text('Будь ласка чи ви заповнили усі поля правильно'),
+          content: const Text('Будь ласка перевірте чи ви заповнили усі поля правильно'),
           actions: [
             TextButton(
               onPressed: () {
