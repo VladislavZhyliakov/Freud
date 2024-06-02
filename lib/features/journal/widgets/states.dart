@@ -148,7 +148,7 @@ class _StatesState extends State<States> {
   }
 
   void _removeState(UserState state) {
-    final stateIndex = _registeredStates.indexOf(state);
+    //final stateIndex = _registeredStates.indexOf(state);
     setState(() {
       _registeredStates.remove(state);
       stateController.deleteState(state.date);
